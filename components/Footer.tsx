@@ -58,7 +58,7 @@ export default function Footer() {
           </p>
           <p className="text-sandal/75">
             Designed & Developed by{" "}
-            <Link href="https://wa.me/919876543210?text=Hello%20I%20want%20to%20know%20more" target="_blank" rel="noopener noreferrer" className="text-marigold font-semibold tracking-wide">
+            <Link href="https://wa.me/919772757660?text=Hello%20I%20want%20to%20know%20more" target="_blank" rel="noopener noreferrer" className="text-marigold font-semibold tracking-wide">
               Harshit Panchal
             </Link>
           </p>
