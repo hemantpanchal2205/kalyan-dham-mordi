@@ -31,42 +31,42 @@ export function getInstagramEmbedUrl(url: string, embedUrl?: string): string {
 export const sampleReels: ReelItem[] = [
   {
     id: 1,
-    url: "https://www.instagram.com/shreekalyandham_mordi_partapur",
+    url: "https://www.instagram.com/shreekalyandham_mordi_partapur?igsh=MXMxazYzbWM4djBpbA==",
     thumbnail: "/images/image-27.jpeg",
   },
   {
     id: 2,
-    url: "https://www.instagram.com/shreekalyandham_mordi_partapur",
+    url: "https://www.instagram.com/reel/DZK6vDChxsM/?igsh=MWp0ZDc3bHlwazV0bA==",
     thumbnail: "/images/image-36.jpeg",
   },
   {
     id: 3,
-    url: "https://www.instagram.com/shreekalyandham_mordi_partapur",
+    url: "https://www.instagram.com/reel/DZIMd6LhCT_/?igsh=aHZqbGFuYTU3YnV5",
     thumbnail: "/images/image-14.jpeg",
   },
   {
     id: 4,
-    url: "https://www.instagram.com/shreekalyandham_mordi_partapur",
+    url: "https://www.instagram.com/reel/DZFrAeFBiXY/?igsh=MWNzcmhkYW13djQ2bg==",
     thumbnail: "/images/image-28.jpeg",
   },
   {
     id: 5,
-    url: "https://www.instagram.com/shreekalyandham_mordi_partapur",
+    url: "https://www.instagram.com/reel/DWk7DDWjB8j/?igsh=MXUycGQ0d243MGNscQ==",
     thumbnail: "/images/image-10.jpeg",
   },
   {
     id: 6,
-    url: "https://www.instagram.com/shreekalyandham_mordi_partapur",
+    url: "https://www.instagram.com/reel/DV-ckf7AVUe/?igsh=MTVocXp6Ymdtdmtycg==",
     thumbnail: "/images/image-17.jpeg",
   },
   {
     id: 7,
-    url: "https://www.instagram.com/shreekalyandham_mordi_partapur",
+    url: "https://www.instagram.com/reel/DTuLiNagRgC/?igsh=MTJxNnNtM2RuOHZoZg==",
     thumbnail: "/images/image-30.jpeg",
   },
   {
     id: 8,
-    url: "https://www.instagram.com/shreekalyandham_mordi_partapur",
+    url: "https://www.instagram.com/reel/DLUy2NOpb32/?igsh=bWF0dmFrZXVpZWIw",
     thumbnail: "/images/image-41.jpg",
   },
 ];
@@ -147,7 +147,7 @@ export default function ReelsSlider({ reels = sampleReels }: ReelsSliderProps) {
   return (
     <section className="bg-gradient-to-b from-sandal/30 via-ivory to-sandal/30 py-16 sm:py-20 border-t border-b border-gold/30 relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        
+
         {/* Header Strip - Without FadeIn */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
           <div>
