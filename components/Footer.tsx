@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-maroon-dark text-sandal">
       <div className="spire-divider" aria-hidden="true" />
@@ -11,42 +16,47 @@ export default function Footer() {
               ॐ
             </span>
             <span className="font-display text-lg text-ivory">
-              श्री कल्याण धाम मोरड़ी
+              {t("mandirName")}
             </span>
           </div>
           <p className="text-sm text-sandal/80 leading-relaxed">
-            भक्ति, शांति और सेवा का केंद्र — सभी श्रद्धालुओं का हार्दिक स्वागत है।
+            {t("footerDesc")}
           </p>
         </div>
 
         <div>
-          <h3 className="font-display text-marigold mb-3">त्वरित लिंक</h3>
+          <h3 className="font-display text-marigold mb-3">{t("quickLinks")}</h3>
           <ul className="space-y-2 text-sm">
-            <li><Link href="/" className="hover:text-marigold transition-colors">होम</Link></li>
-            <li><Link href="/about" className="hover:text-marigold transition-colors">हमारे बारे में</Link></li>
-            <li><Link href="/gallery" className="hover:text-marigold transition-colors">गैलरी</Link></li>
-            <li><Link href="/events" className="hover:text-marigold transition-colors">उत्सव</Link></li>
+            <li><Link href="/" className="hover:text-marigold transition-colors">{t("home")}</Link></li>
+            <li><Link href="/about" className="hover:text-marigold transition-colors">{t("about")}</Link></li>
+            <li><Link href="/gallery" className="hover:text-marigold transition-colors">{t("gallery")}</Link></li>
+            <li><Link href="/events" className="hover:text-marigold transition-colors">{t("events")}</Link></li>
           </ul>
         </div>
 
         <div>
-          <h3 className="font-display text-marigold mb-3">दर्शन व आरती समय</h3>
+          <h3 className="font-display text-marigold mb-3">{t("darshanAartiTiming")}</h3>
           <ul className="space-y-2 text-sm text-sandal/90">
-            <li>प्रातः आरती 8:00 AM</li>
-            <li>प्रातः दर्शन 7:45 AM</li>
-            <li>संध्या आरती 7:30 PM</li>
-            <li>संध्या दर्शन 7:00 PM</li>
+            <li>{t("aartiPratahAarti")} 8:00 AM</li>
+            <li>{t("aartiPratahDarshan")} 7:45 AM</li>
+            <li>{t("aartiSandhyaAarti")} 7:30 PM</li>
+            <li>{t("aartiSandhyaDarshan")} 7:00 PM</li>
           </ul>
         </div>
 
         <div>
-          <h3 className="font-display text-marigold mb-3">संपर्क करें</h3>
+          <h3 className="font-display text-marigold mb-3">{t("btnContact")}</h3>
           <ul className="space-y-2 text-sm text-sandal/90">
-            <li>श्री कल्याण धाम, ग्राम मोरडी,
-              तहसील गढ़ी, परतापुर,
-              जिला बांसवाड़ा, राजस्थान - 327022</li>
-            <Link href="tel:+917850918258">+91 78509 18258</Link>
-            {/* <li>info@radhakrishnamandir.org</li> */}
+            <li>
+              {t("addressText1")}<br />
+              {t("addressText2")}<br />
+              {t("addressText3")}
+            </li>
+            <li>
+              <Link href="tel:+917850918258" className="hover:text-marigold transition-colors font-medium">
+                +91 78509 18258
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
@@ -54,11 +64,16 @@ export default function Footer() {
       <div className="border-t border-sandal/15">
         <div className="mx-auto max-w-6xl px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-sandal/60 text-center sm:text-left">
           <p>
-            © {new Date().getFullYear()} श्री काली कल्याण धाम मंदिर ट्रस्ट. सर्वाधिकार सुरक्षित।
+            © {new Date().getFullYear()} {t("copyright")}
           </p>
           <p className="text-sandal/75">
             Designed & Developed by{" "}
-            <Link href="https://wa.me/919772757660?text=Hello%20I%20want%20to%20know%20more" target="_blank" rel="noopener noreferrer" className="text-marigold font-semibold tracking-wide">
+            <Link
+              href="https://wa.me/919772757660?text=Hello%20I%20want%20to%20know%20more"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-marigold font-semibold tracking-wide hover:underline"
+            >
               Harshit Panchal
             </Link>
           </p>

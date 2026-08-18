@@ -9,6 +9,36 @@ html {
 body {
   background-color: #fbf3e6;
   color: #2b1a12;
+  top: 0px !important;
+}
+
+/* Clean Google Translate Integration */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame,
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+body {
+  position: static !important;
+  top: 0px !important;
+}
+
+.goog-tooltip,
+.goog-tooltip:hover {
+  display: none !important;
+}
+
+.goog-text-highlight {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.skiptranslate:not(.notranslate) {
+  display: none !important;
 }
 
 /* Repeating shikhara (temple spire) rule used as a section divider — the signature motif */

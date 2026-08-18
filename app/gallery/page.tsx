@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import FadeIn from "@/components/FadeIn";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface GalleryImage {
   id: number;
@@ -21,6 +22,7 @@ const galleryImages: GalleryImage[] = Array.from({ length: 41 }, (_, i) => {
 
 export default function Gallery() {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
+  const { t } = useLanguage();
 
   const openLightbox = (index: number) => {
     setActiveImageIndex(index);
@@ -82,13 +84,13 @@ export default function Gallery() {
       <section className="relative overflow-hidden bg-diya-glow bg-maroon-dark py-16 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 text-center">
           <p className="uppercase tracking-[0.3em] text-marigold text-xs sm:text-sm mb-3 font-semibold">
-            कल्याण धाम मोरडी • पावन झलकियाँ
+            {t("galleryTag")}
           </p>
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-ivory">
-            चित्र दीर्घा (गैलरी)
+            {t("galleryTitle")}
           </h1>
           <p className="mt-4 text-sandal/85 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
-            कल्याण धाम मोरडी के पावन प्रांगण, दैनिक दर्शन और उत्सवों की सभी {galleryImages.length} मनमोहक झलकियाँ।
+            {t("galleryDesc")}
           </p>
         </div>
       </section>
@@ -99,13 +101,13 @@ export default function Gallery() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="flex items-center justify-between mb-8 border-b border-gold/30 pb-4">
             <p className="text-maroon font-medium text-sm sm:text-base">
-              कुल चित्र:{" "}
+              {t("galleryTotal")}{" "}
               <span className="font-bold text-marigold-dark">
                 {galleryImages.length}
               </span>
             </p>
             <p className="text-xs text-ink/60 hidden sm:block">
-              * किसी भी चित्र पर क्लिक करके बड़े आकार में देखें
+              {t("galleryHint")}
             </p>
           </div>
 
@@ -143,7 +145,7 @@ export default function Gallery() {
           {/* Controls Bar Top */}
           <div className="absolute top-3 left-3 right-3 sm:top-5 sm:left-6 sm:right-6 flex items-center justify-between z-20 text-ivory pointer-events-none">
             <div className="bg-maroon-dark/80 backdrop-blur border border-gold/40 px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium text-marigold pointer-events-auto">
-              चित्र {activeImageIndex + 1} / {galleryImages.length}
+              {t("galleryPhotoNumber")} {activeImageIndex + 1} / {galleryImages.length}
             </div>
 
             <div className="flex items-center gap-2 pointer-events-auto">
@@ -153,7 +155,7 @@ export default function Gallery() {
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
                 className="grid h-10 w-10 place-items-center rounded-full bg-maroon-dark/80 hover:bg-maroon border border-gold/40 text-ivory text-sm transition-colors"
-                title="मूल चित्र देखें"
+                title={t("galleryOriginal")}
               >
                 ↗
               </a>
@@ -163,7 +165,7 @@ export default function Gallery() {
                   closeLightbox();
                 }}
                 className="grid h-10 w-10 place-items-center rounded-full bg-maroon-dark/80 hover:bg-maroon border border-gold/40 text-ivory text-lg transition-colors"
-                title="बंद करें (Esc)"
+                title={t("galleryClose")}
               >
                 ✕
               </button>
@@ -177,7 +179,7 @@ export default function Gallery() {
               showPrev();
             }}
             className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-20 grid h-11 w-11 sm:h-14 sm:w-14 place-items-center rounded-full bg-maroon-dark/80 hover:bg-maroon border border-gold/50 text-marigold text-xl sm:text-2xl transition-transform hover:scale-110 shadow-xl"
-            title="पिछला चित्र (Left Arrow)"
+            title="Previous (Left Arrow)"
           >
             ❮
           </button>
@@ -189,7 +191,7 @@ export default function Gallery() {
               showNext();
             }}
             className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-20 grid h-11 w-11 sm:h-14 sm:w-14 place-items-center rounded-full bg-maroon-dark/80 hover:bg-maroon border border-gold/50 text-marigold text-xl sm:text-2xl transition-transform hover:scale-110 shadow-xl"
-            title="अगला चित्र (Right Arrow)"
+            title="Next (Right Arrow)"
           >
             ❯
           </button>

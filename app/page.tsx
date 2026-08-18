@@ -1,35 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
-
-const highlights = [
-  {
-    title: "हमारे बारे में",
-    desc: "मंदिर का इतिहास, स्थापना और आध्यात्मिक परंपरा जानें।",
-    href: "/about",
-    icon: "🛕",
-  },
-  {
-    title: "गैलरी",
-    desc: "उत्सवों, श्रृंगार और मंदिर परिसर की झलकियाँ देखें।",
-    href: "/gallery",
-    icon: "📸",
-  },
-  {
-    title: "आगामी उत्सव",
-    desc: "पर्व, विशेष पूजा और सामुदायिक आयोजनों की सूची।",
-    href: "/events",
-    icon: "🪔",
-  },
-];
-
-const aartiTimes = [
-  { name: "प्रातः आरती", time: "8:00 AM" },
-  { name: "प्रातः दर्शन", time: "7:45 AM" },
-  { name: "संध्य आरती", time: "7:30 PM" },
-  { name: "संध्या दर्शन ", time: "7:00 PM" },
-  // { name: "शयन आरती", time: "९:०० PM" },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 const homeGalleryImages = [
   { id: 1, src: "/images/image-27.jpeg", alt: "कल्याण धाम मोरडी - चित्र 1" },
@@ -45,39 +19,68 @@ const homeGalleryImages = [
 ];
 
 export default function Home() {
+  const { t } = useLanguage();
+
+  const aartiTimes = [
+    { name: t("aartiPratahAarti"), time: "8:00 AM" },
+    { name: t("aartiPratahDarshan"), time: "7:45 AM" },
+    { name: t("aartiSandhyaAarti"), time: "7:30 PM" },
+    { name: t("aartiSandhyaDarshan"), time: "7:00 PM" },
+  ];
+
+  const highlights = [
+    {
+      title: t("highlight1Title"),
+      desc: t("highlight1Desc"),
+      href: "/about",
+      icon: "🛕",
+    },
+    {
+      title: t("highlight2Title"),
+      desc: t("highlight2Desc"),
+      href: "/gallery",
+      icon: "📸",
+    },
+    {
+      title: t("highlight3Title"),
+      desc: t("highlight3Desc"),
+      href: "/events",
+      icon: "🪔",
+    },
+  ];
+
   return (
     <>
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-diya-glow bg-maroon-dark">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:py-28 grid lg:grid-cols-2 gap-12 items-center">
-          <FadeIn direction="up" duration={800}>
-            <p className="uppercase tracking-[0.3em] text-marigold text-xs sm:text-sm mb-4">
-              सनातन परंपरा • शांति • भक्ति
+          <FadeIn direction="up" duration={500}>
+            <p className="uppercase tracking-[0.3em] text-marigold text-xs sm:text-sm mb-4 font-semibold">
+              {t("heroTag")}
             </p>
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-ivory leading-tight">
-              जय श्री कल्याण <br className="hidden sm:block" /> मंदिर में आपका स्वागत है
+              {t("heroTitle1")} <br className="hidden sm:block" /> {t("heroTitle2")}
             </h1>
-            <p className="mt-6 text-sandal/85 text-base sm:text-lg max-w-xl">
-              यह मंदिर श्रद्धा और सेवा का केंद्र है, जहाँ प्रतिदिन आरती, भजन और
-              सामुदायिक उत्सवों के माध्यम से भक्तों को भगवान के दर्शन का सौभाग्य प्राप्त होता है।
+            <p className="mt-6 text-sandal/85 text-base sm:text-lg max-w-xl leading-relaxed">
+              {t("heroDesc")}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 href="/events"
                 className="rounded-full bg-marigold px-7 py-3 font-semibold text-maroon-dark hover:bg-marigold-light transition-colors"
               >
-                उत्सव कैलेंडर देखें
+                {t("btnEventCalendar")}
               </Link>
               <Link
                 href="/about"
                 className="rounded-full border border-sandal/40 px-7 py-3 font-semibold text-ivory hover:bg-ivory/10 transition-colors"
               >
-                मंदिर के बारे में
+                {t("btnAboutMandir")}
               </Link>
             </div>
           </FadeIn>
 
-          <FadeIn direction="up" delay={200} duration={900}>
+          <FadeIn direction="up" delay={200} duration={500}>
             <div className="relative h-72 sm:h-96 lg:h-[26rem] rounded-2xl overflow-hidden border border-marigold/30 shadow-2xl shadow-black/40">
               <Image
                 src="/images/image-41.jpg"
@@ -99,15 +102,15 @@ export default function Home() {
           <FadeIn direction="up">
             <div className="text-center mb-10">
               <p className="text-marigold-dark font-semibold tracking-wide text-sm uppercase">
-                दैनिक आरती
+                {t("aartiTag")}
               </p>
               <h2 className="font-display text-3xl sm:text-4xl text-maroon mt-2">
-                आज का दर्शन समय
+                {t("aartiTitle")}
               </h2>
             </div>
           </FadeIn>
 
-          <ol className="grid sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {aartiTimes.map((a, i) => (
               <FadeIn key={a.name} direction="up" delay={i * 100}>
                 <li className="rounded-xl bg-sandal/60 border border-gold/30 px-4 py-6 text-center shadow-sm hover:shadow-md transition-shadow list-none">
@@ -117,7 +120,7 @@ export default function Home() {
                   <span className="block font-display text-lg text-maroon">
                     {a.name}
                   </span>
-                  <span className="block mt-1 text-ink/70 text-sm">{a.time}</span>
+                  <span className="block mt-1 text-ink/70 text-sm font-medium">{a.time}</span>
                 </li>
               </FadeIn>
             ))}
@@ -131,10 +134,10 @@ export default function Home() {
           <FadeIn direction="up">
             <div className="text-center mb-10">
               <p className="text-marigold-dark font-semibold tracking-widest text-sm uppercase">
-                विशेष पावन आयोजन
+                {t("eventBannerTag")}
               </p>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-maroon mt-2">
-                आगामी भव्य उत्सव
+                {t("eventBannerTitle")}
               </h2>
             </div>
           </FadeIn>
@@ -148,35 +151,35 @@ export default function Home() {
                 {/* Left Column: Event Details */}
                 <div className="lg:col-span-7 space-y-6">
                   <div className="inline-flex items-center gap-2 rounded-full bg-marigold/20 border border-marigold/40 px-4 py-1.5 text-xs sm:text-sm font-semibold text-marigold">
-                    <span>🪔</span> विशेष वार्षिकोत्सव • 20 अगस्त
+                    <span>🪔</span> {t("eventBannerBadge")}
                   </div>
 
                   <h3 className="font-display text-2xl sm:text-4xl text-ivory leading-snug">
-                    भव्य जन्मोत्सव <br />
-                    <span className="text-marigold">श्री कल्लाजी राठौड़ महाराज</span>
+                    {t("eventBannerHeading1")} <br />
+                    <span className="text-marigold">{t("eventBannerHeading2")}</span>
                   </h3>
 
                   <p className="text-sandal/85 text-sm sm:text-base leading-relaxed">
-                    कल्याण धाम मोरडी में बाबाजी हुकुम श्री कल्लाजी राठौड़ महाराज का पावन जन्मोत्सव अत्यंत हर्षोल्लास व वैदिक रीति-रिवाजों के साथ मनाया जा रहा है।
+                    {t("eventBannerDesc")}
                   </p>
 
                   {/* Event Schedule Pills */}
                   <div className="grid grid-cols-2 gap-3 pt-2">
                     <div className="rounded-xl bg-white/5 border border-gold/25 p-3 sm:p-4">
-                      <span className="block text-xs text-marigold font-semibold">प्रातः 10:00 बजे</span>
-                      <span className="font-display text-sm sm:text-base text-ivory">🔥 यज्ञ एवं हवन</span>
+                      <span className="block text-xs text-marigold font-semibold">{t("pill1Time")}</span>
+                      <span className="font-display text-sm sm:text-base text-ivory">{t("pill1Title")}</span>
                     </div>
                     <div className="rounded-xl bg-white/5 border border-gold/25 p-3 sm:p-4">
-                      <span className="block text-xs text-marigold font-semibold">दोपहर 12:00 बजे</span>
-                      <span className="font-display text-sm sm:text-base text-ivory">📖 भजन व सुंदरकाण्ड</span>
+                      <span className="block text-xs text-marigold font-semibold">{t("pill2Time")}</span>
+                      <span className="font-display text-sm sm:text-base text-ivory">{t("pill2Title")}</span>
                     </div>
                     <div className="rounded-xl bg-white/5 border border-gold/25 p-3 sm:p-4">
-                      <span className="block text-xs text-marigold font-semibold">दोपहर 1:00 बजे</span>
-                      <span className="font-display text-sm sm:text-base text-ivory">🪔 दिव्य महाआरती</span>
+                      <span className="block text-xs text-marigold font-semibold">{t("pill3Time")}</span>
+                      <span className="font-display text-sm sm:text-base text-ivory">{t("pill3Title")}</span>
                     </div>
                     <div className="rounded-xl bg-white/5 border border-gold/25 p-3 sm:p-4">
-                      <span className="block text-xs text-marigold font-semibold">दोपहर 2:00 बजे</span>
-                      <span className="font-display text-sm sm:text-base text-ivory">🍲 महाप्रसादी</span>
+                      <span className="block text-xs text-marigold font-semibold">{t("pill4Time")}</span>
+                      <span className="font-display text-sm sm:text-base text-ivory">{t("pill4Title")}</span>
                     </div>
                   </div>
 
@@ -186,13 +189,13 @@ export default function Home() {
                       href="/events"
                       className="rounded-full bg-marigold px-7 py-3 text-sm sm:text-base font-semibold text-maroon-dark hover:bg-marigold-light transition-all shadow-lg hover:scale-105"
                     >
-                      उत्सव विवरण देखें →
+                      {t("btnEventDetails")}
                     </Link>
                     <a
                       href="tel:+917850918258"
                       className="rounded-full border border-gold/40 px-6 py-3 text-sm sm:text-base font-semibold text-ivory hover:bg-white/10 transition-colors flex items-center gap-2"
                     >
-                      <span>📞</span> संपर्क करें
+                      <span>📞</span> {t("btnContact")}
                     </a>
                   </div>
                 </div>
@@ -208,7 +211,7 @@ export default function Home() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-5">
                     <span className="font-display text-sm sm:text-base text-ivory drop-shadow-md">
-                      कल्याण धाम मोरडी • दीपोत्सव एवं उत्सव
+                      {t("bannerImageLabel")}
                     </span>
                   </div>
                 </div>
@@ -224,10 +227,10 @@ export default function Home() {
           <FadeIn direction="up">
             <div className="text-center mb-10">
               <p className="text-marigold-dark font-semibold tracking-wide text-sm uppercase">
-                जानिए
+                {t("highlightsTag")}
               </p>
               <h2 className="font-display text-3xl sm:text-4xl text-maroon mt-2">
-                मंदिर से जुड़ें
+                {t("highlightsTitle")}
               </h2>
             </div>
           </FadeIn>
@@ -237,7 +240,7 @@ export default function Home() {
               <FadeIn key={h.href} direction="up" delay={idx * 120}>
                 <Link
                   href={h.href}
-                  className="group block rounded-2xl bg-ivory border border-gold/30 p-8 hover:border-marigold hover:shadow-lg hover:shadow-maroon/5 transition-all"
+                  className="group block rounded-2xl bg-ivory border border-gold/30 p-8 hover:border-marigold hover:shadow-lg hover:shadow-maroon/5 transition-all h-full"
                 >
                   <span className="text-3xl">{h.icon}</span>
                   <h3 className="font-display text-xl text-maroon mt-4 group-hover:text-marigold-dark transition-colors">
@@ -247,7 +250,7 @@ export default function Home() {
                     {h.desc}
                   </p>
                   <span className="inline-block mt-4 text-sm font-semibold text-maroon group-hover:translate-x-1 transition-transform">
-                    और देखें →
+                    {t("seeMore")}
                   </span>
                 </Link>
               </FadeIn>
@@ -262,18 +265,18 @@ export default function Home() {
           <FadeIn direction="up">
             <div className="text-center mb-10">
               <p className="text-marigold-dark font-semibold tracking-widest text-sm uppercase">
-                पावन दर्शन एवं झलकियाँ
+                {t("galleryShowcaseTag")}
               </p>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-maroon mt-2">
-                मंदिर फोटो गैलरी
+                {t("galleryShowcaseTitle")}
               </h2>
               <p className="mt-3 text-ink/75 max-w-xl mx-auto text-sm sm:text-base">
-                कल्याण धाम मोरडी के पावन प्रांगण, दैनिक आरती और दिव्य उत्सवों की कुछ मनमोहक झलकियाँ।
+                {t("galleryShowcaseDesc")}
               </p>
             </div>
           </FadeIn>
 
-          {/* 10 Photos Grid: 2 cols on mobile, 3 on tablet, 5 on desktop */}
+          {/* 10 Photos Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
             {homeGalleryImages.map((img, idx) => (
               <FadeIn key={img.id} direction="up" delay={(idx % 5) * 80}>
@@ -293,7 +296,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-maroon-dark/85 via-maroon-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end justify-center p-3">
                     <span className="text-xs font-semibold text-ivory flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                       <span className="grid h-6 w-6 place-items-center rounded-full bg-marigold text-maroon-dark text-[11px] shadow">🔍</span>
-                      <span>बड़ा देखें</span>
+                      <span>{t("zoomView")}</span>
                     </span>
                   </div>
                 </Link>
@@ -308,7 +311,7 @@ export default function Home() {
                 href="/gallery"
                 className="inline-flex items-center gap-2 rounded-full bg-marigold px-8 py-3.5 text-base font-bold text-maroon-dark hover:bg-marigold-light transition-all shadow-lg hover:shadow-marigold/30 hover:scale-105"
               >
-                <span>📸 संपूर्ण गैलरी देखें (41 छायाचित्र)</span>
+                <span>{t("btnViewFullGallery")}</span>
                 <span>→</span>
               </Link>
             </div>
@@ -321,10 +324,10 @@ export default function Home() {
         <div className="mx-auto max-w-3xl px-4 text-center">
           <FadeIn direction="up">
             <p className="font-display text-xl sm:text-2xl text-marigold leading-relaxed">
-              "जहाँ वीरता का सम्मान होता है, वहाँ कल्लाजी का स्मरण होता है।"
+              {t("shlokaText")}
             </p>
             <p className="mt-3 text-sandal/70 text-sm">
-              — वीर कल्लाजी —
+              {t("shlokaAuthor")}
             </p>
           </FadeIn>
         </div>
@@ -336,13 +339,13 @@ export default function Home() {
           <FadeIn direction="up">
             <div className="text-center mb-10">
               <p className="text-marigold-dark font-semibold tracking-wide text-sm uppercase">
-                स्थान व दिशा-निर्देश
+                {t("locationTag")}
               </p>
               <h2 className="font-display text-3xl sm:text-4xl text-maroon mt-2">
-                मंदिर कैसे पहुँचें
+                {t("locationTitle")}
               </h2>
               <p className="mt-3 text-ink/70 text-sm sm:text-base max-w-xl mx-auto">
-                श्री काली कल्याणगढ़ धाम मोरडी़, गढ़ी परतापुर, जिला बांसवाड़ा (राजस्थान)
+                {t("locationSubtitle")}
               </p>
             </div>
           </FadeIn>
@@ -354,18 +357,18 @@ export default function Home() {
                 <div className="space-y-6">
                   <div>
                     <h3 className="font-display text-xl text-maroon mb-2 flex items-center gap-2">
-                      <span className="text-2xl">📍</span> मंदिर का पता
+                      <span className="text-2xl">📍</span> {t("addressTitle")}
                     </h3>
                     <p className="text-ink/80 text-sm sm:text-base leading-relaxed">
-                      श्री कल्याण धाम, ग्राम मोरडी,<br />
-                      तहसील गढ़ी, परतापुर,<br />
-                      जिला बांसवाड़ा, राजस्थान - 327022
+                      {t("addressText1")}<br />
+                      {t("addressText2")}<br />
+                      {t("addressText3")}
                     </p>
                   </div>
 
                   <div className="border-t border-gold/30 pt-4">
                     <h3 className="font-display text-lg text-maroon mb-2 flex items-center gap-2">
-                      <span className="text-xl">📞</span> संपर्क सूत्र
+                      <span className="text-xl">📞</span> {t("contactTitle")}
                     </h3>
                     <a
                       href="tel:+917850918258"
@@ -377,11 +380,11 @@ export default function Home() {
 
                   <div className="border-t border-gold/30 pt-4">
                     <h3 className="font-display text-lg text-maroon mb-2 flex items-center gap-2">
-                      <span className="text-xl">⏰</span> दर्शन समय
+                      <span className="text-xl">⏰</span> {t("timingTitle")}
                     </h3>
                     <p className="text-ink/75 text-sm">
-                      प्रातः ५:०० बजे से रात्रि ९:०० बजे तक<br />
-                      <span className="text-xs text-maroon/80 font-medium">* रविवार को विशेष भाव सेवा</span>
+                      {t("timingText1")}<br />
+                      <span className="text-xs text-maroon/80 font-medium">{t("timingText2")}</span>
                     </p>
                   </div>
                 </div>
@@ -393,7 +396,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className="w-full flex items-center justify-center gap-2 rounded-full bg-maroon px-6 py-3.5 font-semibold text-ivory hover:bg-maroon-light transition-colors text-sm shadow-md"
                   >
-                    <span>गूगल मैप पर मार्ग देखें</span>
+                    <span>{t("btnViewMap")}</span>
                     <span>↗</span>
                   </a>
                 </div>

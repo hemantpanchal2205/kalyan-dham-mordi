@@ -2,21 +2,31 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useLanguage, Language } from "@/context/LanguageContext";
 
-const navLinks = [
-  { href: "/", label: "होम", icon: "🛕" },
-  { href: "/about", label: "हमारे बारे में", icon: "📖" },
-  { href: "/gallery", label: "गैलरी", icon: "📸" },
-  { href: "/events", label: "उत्सव", icon: "🪔" },
+const languages: { code: Language; name: string; flag: string }[] = [
+  { code: "hi", name: "हिन्दी", flag: "🇮🇳" },
+  { code: "en", name: "English", flag: "🇬🇧" },
+  { code: "gu", name: "ગુજરાતી", flag: "🏛️" },
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
+
+  const navLinks = [
+    { href: "/", label: t("home"), icon: "🛕" },
+    { href: "/about", label: t("about"), icon: "📖" },
+    { href: "/gallery", label: t("gallery"), icon: "📸" },
+    { href: "/events", label: t("events"), icon: "🪔" },
+  ];
 
   // Close menu on Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
@@ -39,10 +49,10 @@ export default function Header() {
       {/* Top strip — darshan timing & contact */}
       <div className="bg-maroon-dark text-sandal text-xs sm:text-sm">
         <div className="mx-auto max-w-6xl px-4 py-1.5 flex items-center justify-between gap-3">
-          <p className="truncate">दर्शन समय : प्रातः 7:30 – रात्रि 9:00 बजे</p>
+          <p className="truncate">{t("darshanTimeTop")}</p>
           <a
             href="tel:+917850918258"
-            className="hover:text-marigold transition-colors flex items-center gap-1 font-medium"
+            className="hover:text-marigold transition-colors flex items-center gap-1 font-medium shrink-0"
           >
             <span>📞</span> +91 78509 18258
           </a>
@@ -50,43 +60,87 @@ export default function Header() {
       </div>
 
       <header className="sticky top-0 z-40 bg-ivory/95 backdrop-blur border-b border-gold/40">
-        <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 group">
+        <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-[10px]">
+          <Link href="/" className="flex items-center gap-3 group shrink-0">
             <img
               src="/images/kalyan-dham-logo.png"
               alt="कल्याण धाम मोरडी"
-              className="h-[60px] sm:h-[80px] w-auto object-contain"
+              className="h-[55px] sm:h-[75px] w-auto object-contain"
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="relative font-medium text-ink/80 hover:text-maroon transition-colors after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-marigold after:transition-all hover:after:w-full"
+          {/* Desktop Navigation & Actions */}
+          <div className="hidden md:flex items-center gap-5 lg:gap-7">
+            <nav className="flex items-center gap-5 lg:gap-7">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="relative font-medium text-ink/80 hover:text-maroon transition-colors after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-marigold after:transition-all hover:after:w-full text-sm lg:text-base"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            {/* Language Dropdown Select */}
+            <div className="relative inline-flex items-center">
+              <select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value as Language)}
+                className="appearance-none cursor-pointer rounded-full border border-gold/50 bg-sandal/40 hover:bg-sandal/70 py-1.5 pl-3 pr-7 text-xs font-bold text-maroon shadow-sm focus:outline-none focus:ring-2 focus:ring-marigold transition-all"
+                aria-label="भाषा चुनें / Select Language"
               >
-                {link.label}
-              </Link>
-            ))}
+                {languages.map((l) => (
+                  <option key={l.code} value={l.code} className="bg-ivory text-ink py-1">
+                    {l.flag} {l.name}
+                  </option>
+                ))}
+              </select>
+              <span className="pointer-events-none absolute right-2.5 text-[9px] text-maroon font-bold">
+                ▼
+              </span>
+            </div>
+
+            {/* Aarti Button */}
             <Link
               href="#aarti"
-              className="rounded-full bg-maroon px-5 py-2 text-sm font-semibold text-ivory hover:bg-maroon-light transition-colors shadow-sm"
+              className="rounded-full bg-maroon px-5 py-2 text-sm font-semibold text-ivory hover:bg-maroon-light transition-colors shadow-sm whitespace-nowrap"
             >
-              आरती समय देखें
+              {t("seeAarti")}
             </Link>
-          </nav>
+          </div>
 
-          {/* Mobile Hamburger Button */}
-          <button
-            aria-label="मेन्यू खोलें"
-            aria-expanded={open}
-            onClick={() => setOpen(true)}
-            className="md:hidden grid h-10 w-10 place-items-center rounded-lg border border-gold/40 bg-sandal/30 text-maroon text-xl hover:bg-sandal/60 transition-colors"
-          >
-            ☰
-          </button>
+          {/* Mobile Right Controls: Language Dropdown + Hamburger */}
+          <div className="flex md:hidden items-center gap-2">
+            {/* Mobile Language Dropdown Select */}
+            <div className="relative inline-flex items-center">
+              <select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value as Language)}
+                className="appearance-none cursor-pointer rounded-lg border border-gold/50 bg-sandal/40 py-1.5 pl-2.5 pr-6 text-xs font-bold text-maroon shadow-sm focus:outline-none"
+                aria-label="भाषा चुनें / Select Language"
+              >
+                {languages.map((l) => (
+                  <option key={l.code} value={l.code} className="bg-ivory text-ink">
+                    {l.flag} {l.name}
+                  </option>
+                ))}
+              </select>
+              <span className="pointer-events-none absolute right-2 text-[8px] text-maroon font-bold">
+                ▼
+              </span>
+            </div>
+
+            <button
+              aria-label="मेन्यू खोलें"
+              aria-expanded={open}
+              onClick={() => setOpen(true)}
+              className="grid h-10 w-10 place-items-center rounded-lg border border-gold/40 bg-sandal/30 text-maroon text-xl hover:bg-sandal/60 transition-colors"
+            >
+              ☰
+            </button>
+          </div>
         </div>
       </header>
       <div className="spire-divider" aria-hidden="true" />
@@ -107,15 +161,15 @@ export default function Header() {
         aria-label="मोबाइल नेविगेशन मेन्यू"
       >
         {/* Drawer Sticky Top Header */}
-        <div className="shrink-0 flex items-center justify-between p-5 border-b border-gold/30 bg-ivory/95">
+        <div className="shrink-0 flex items-center justify-between p-4 border-b border-gold/30 bg-ivory/95">
           <img
             src="/images/kalyan-dham-logo.png"
             alt="कल्याण धाम मोरडी"
-            className="h-9 w-auto object-contain"
+            className="h-8 w-auto object-contain"
           />
           <button
             onClick={() => setOpen(false)}
-            className="grid h-9 w-9 place-items-center rounded-full bg-maroon/10 hover:bg-maroon hover:text-ivory text-maroon text-lg transition-colors border border-gold/30"
+            className="grid h-8 w-8 place-items-center rounded-full bg-maroon/10 hover:bg-maroon hover:text-ivory text-maroon text-base transition-colors border border-gold/30"
             aria-label="मेन्यू बंद करें"
           >
             ✕
@@ -123,8 +177,32 @@ export default function Header() {
         </div>
 
         {/* Scrollable Middle Content */}
-        <div className="flex-1 overflow-y-auto p-5 overscroll-contain space-y-4">
-          <nav className="flex flex-col gap-2">
+        <div className="flex-1 overflow-y-auto p-5 overscroll-contain space-y-5">
+          {/* Language Dropdown Select Inside Mobile Menu */}
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-maroon/70 mb-2">
+              {t("chooseLanguage")}
+            </p>
+            <div className="relative inline-flex items-center w-full">
+              <select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value as Language)}
+                className="w-full appearance-none cursor-pointer rounded-xl border border-gold/40 bg-sandal/40 py-2.5 pl-3.5 pr-8 text-xs font-bold text-maroon shadow-sm focus:outline-none"
+              >
+                {languages.map((l) => (
+                  <option key={l.code} value={l.code} className="bg-ivory text-ink">
+                    {l.flag} {l.name}
+                  </option>
+                ))}
+              </select>
+              <span className="pointer-events-none absolute right-3 text-[10px] text-maroon font-bold">
+                ▼
+              </span>
+            </div>
+          </div>
+
+          {/* Navigation Links */}
+          <nav className="flex flex-col gap-1.5 pt-2 border-t border-gold/20">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -143,7 +221,7 @@ export default function Header() {
                 onClick={() => setOpen(false)}
                 className="w-full flex items-center justify-center gap-2 rounded-full bg-maroon px-5 py-3 text-sm font-semibold text-ivory hover:bg-maroon-light transition-colors shadow-md"
               >
-                <span>🪔 आरती समय देखें</span>
+                <span>🪔 {t("seeAarti")}</span>
               </Link>
             </div>
           </nav>
@@ -152,7 +230,7 @@ export default function Header() {
         {/* Drawer Bottom Info (Shrink-0) */}
         <div className="shrink-0 border-t border-gold/30 p-4 text-xs text-ink/70 space-y-2 bg-sandal/25">
           <p className="font-semibold text-maroon flex items-center gap-1.5">
-            <span>⏰</span> दर्शन: प्रातः ५:०० - रात्रि ९:००
+            <span>⏰</span> {t("darshanTimeTop")}
           </p>
           <a
             href="tel:+917850918258"
