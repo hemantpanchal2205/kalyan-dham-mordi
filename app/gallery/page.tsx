@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
+import FadeIn from "@/components/FadeIn";
 
 interface GalleryImage {
   id: number;
@@ -110,20 +111,21 @@ export default function Gallery() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
             {galleryImages.map((img, index) => (
-              <figure
-                key={img.id}
-                onClick={() => openLightbox(index)}
-                className="group relative aspect-[4/3] sm:aspect-square overflow-hidden rounded-xl border border-gold/30 bg-maroon-dark/5 shadow-sm hover:shadow-xl hover:border-marigold transition-all duration-300 cursor-pointer"
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  loading="lazy"
-                />
-              </figure>
+              <FadeIn key={img.id} direction="up" delay={(index % 4) * 60}>
+                <figure
+                  onClick={() => openLightbox(index)}
+                  className="group relative aspect-[4/3] sm:aspect-square overflow-hidden rounded-xl border border-gold/30 bg-maroon-dark/5 shadow-sm hover:shadow-xl hover:border-marigold transition-all duration-300 cursor-pointer"
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    loading="lazy"
+                  />
+                </figure>
+              </FadeIn>
             ))}
           </div>
         </div>
