@@ -83,7 +83,7 @@ export default function Footer() {
       </footer>
 
       {/* Floating Action Icons for WhatsApp and Instagram */}
-      <div className="fixed right-[30px] bottom-[100px] z-50 flex flex-col gap-3 items-center">
+      <div className="fixed right-[10px] bottom-[10px] z-50 flex flex-col gap-3 items-center">
         {/* Instagram Floating Button */}
         <Link
           href="https://www.instagram.com/shreekalyandham_mordi_partapur"

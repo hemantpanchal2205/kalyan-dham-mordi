@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
+import ReelsSlider from "@/components/ReelsSlider";
 import { useLanguage } from "@/context/LanguageContext";
 
 const homeGalleryImages = [
@@ -318,6 +319,9 @@ export default function Home() {
           </FadeIn>
         </div>
       </section>
+
+      {/* Instagram Reels Slider */}
+      <ReelsSlider />
 
       {/* Shloka strip — quiet devotional close */}
       <section className="bg-maroon py-14">
