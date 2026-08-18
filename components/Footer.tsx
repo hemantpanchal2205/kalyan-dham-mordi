@@ -52,9 +52,17 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-sandal/15">
-        <p className="mx-auto max-w-6xl px-4 py-4 text-center text-xs text-sandal/60">
-          © {new Date().getFullYear()} श्री काली कल्याण धाम मंदिर ट्रस्ट. सर्वाधिकार सुरक्षित।
-        </p>
+        <div className="mx-auto max-w-6xl px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-sandal/60 text-center sm:text-left">
+          <p>
+            © {new Date().getFullYear()} श्री काली कल्याण धाम मंदिर ट्रस्ट. सर्वाधिकार सुरक्षित।
+          </p>
+          <p className="text-sandal/75">
+            Designed & Developed by{" "}
+            <span className="text-marigold font-semibold tracking-wide">
+              Harshit Panchal
+            </span>
+          </p>
+        </div>
       </div>
     </footer>
   );
