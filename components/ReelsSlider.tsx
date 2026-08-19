@@ -233,7 +233,7 @@ export default function ReelsSlider({ reels = sampleReels }: ReelsSliderProps) {
                       {/* Thumbnail Image */}
                       <Image
                         src={reel.thumbnail}
-                        alt="Instagram Reel"
+                        alt="Kalyan Dham Mordi Instagram devotional reel video thumbnail"
                         fill
                         className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                         sizes="270px"
@@ -345,7 +345,7 @@ export default function ReelsSlider({ reels = sampleReels }: ReelsSliderProps) {
                 <div className="relative w-full h-full flex flex-col items-center justify-center p-6 text-center">
                   <Image
                     src={activeReel.thumbnail}
-                    alt="Instagram Reel"
+                    alt="Kalyan Dham Mordi Instagram video cover"
                     fill
                     priority
                     className="object-cover opacity-75"

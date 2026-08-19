@@ -61,10 +61,12 @@ export default function Header() {
 
       <header className="sticky top-0 z-40 bg-ivory/95 backdrop-blur border-b border-gold/40">
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between gap-[10px]">
-          <Link href="/" className="flex items-center gap-3 group shrink-0">
+          <Link href="/" className="flex items-center gap-3 group shrink-0" aria-label="Shri Kali Kalyan Dham Mordi Home">
             <img
               src="/images/kalyan-dham-logo.png"
-              alt="कल्याण धाम मोरडी"
+              alt="Shri Kali Kalyan Dham Mordi Official Temple Logo"
+              width={200}
+              height={75}
               className="h-[55px] sm:h-[75px] w-auto object-contain"
             />
           </Link>
@@ -164,7 +166,9 @@ export default function Header() {
         <div className="shrink-0 flex items-center justify-between p-4 border-b border-gold/30 bg-ivory/95">
           <img
             src="/images/kalyan-dham-logo.png"
-            alt="कल्याण धाम मोरडी"
+            alt="Shri Kali Kalyan Dham Mordi Official Temple Logo"
+            width={120}
+            height={32}
             className="h-8 w-auto object-contain"
           />
           <button
