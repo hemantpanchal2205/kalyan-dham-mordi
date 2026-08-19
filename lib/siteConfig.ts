@@ -5,8 +5,8 @@
 
 const productionUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : "https://kalyan-dham-mordi.vercel.app");
 
 export const siteConfig = {
@@ -15,9 +15,9 @@ export const siteConfig = {
   nameGujarati: "શ્રી કલ્યાણ ધામ મોરડી",
   tagline: "Sanatan Tradition • Peace • Devotion | सनातन परंपरा • शांति • भक्ति",
   description:
-    "Official website of Shri Kali Kalyan Dham Mordi (श्री काली कल्याणगढ़ धाम मोरडी), Garhi Partapur, Banswara, Rajasthan. Discover daily aarti timings, darshan schedule, Veer Kallaji Rathore history, annual Janmotsav events, and photo gallery.",
+    "Official website of Shri Kali Kalyan Dham Mordi (श्री काली कल्याणगढ़ धाम मोरडी), Banswara, Rajasthan. Aarti timings, darshan schedule, history & gallery.",
   descriptionHindi:
-    "श्री काली कल्याणगढ़ धाम मोरडी़ की आधिकारिक वेबसाइट — दर्शन समय (प्रातः 5:00 से रात्रि 9:00), दैनिक आरती, वीर कल्लाजी राठौड़ इतिहास, जन्मोत्सव और 41 मनमोहक चित्रों की गैलरी।",
+    "श्री काली कल्याणगढ़ धाम मोरडी़ की आधिकारिक वेबसाइट — दर्शन समय, दैनिक आरती, वीर कल्लाजी राठौड़ इतिहास और 41 पावन तस्वीरों की गैलरी।",
   url: productionUrl,
   ogImage: "/images/image-41.jpg",
   logo: "/images/kalyan-dham-logo.png",

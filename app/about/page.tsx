@@ -6,7 +6,7 @@ import { getAboutPageSchema, getBreadcrumbSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "About Kalyan Dham Mordi | History, Lore & Significance | हमारे बारे में",
   description:
-    "Explore the 50-60 year history of Shri Kali Kalyan Dham Mordi in Garhi Partapur, Banswara. Discover the four-armed folk deity Veer Kallaji Rathore, Gadipati Kunal Ji Sharma, Sunday Bhav Seva, and temple values.",
+    "Explore the history of Shri Kali Kalyan Dham Mordi, Rajasthan. Learn about Veer Kallaji Rathore lore, Gadipati Kunal Ji Sharma, and temple traditions.",
   alternates: {
     canonical: "/about",
   },

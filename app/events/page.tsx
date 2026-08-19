@@ -6,7 +6,7 @@ import { getJanmotsavEventSchema, getBreadcrumbSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Kalyan Dham Mordi Events | Shri Kallaji Rathore Janmotsav | वार्षिकोत्सव",
   description:
-    "Annual Shri Kallaji Rathore Janmotsav at Shri Kali Kalyan Dham Mordi (20 August). Discover full schedule, special pooja, aarti, dhwaja hoisting, bhajans, shobhayatra, and maha prasadi bhandara.",
+    "Annual Shri Kallaji Rathore Janmotsav at Kalyan Dham Mordi (20 August). Check pooja schedule, aarti, bhajans, shobhayatra, and maha prasadi bhandara.",
   alternates: {
     canonical: "/events",
   },

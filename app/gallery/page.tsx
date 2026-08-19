@@ -7,7 +7,7 @@ import { galleryImages } from "@/lib/galleryData";
 export const metadata: Metadata = {
   title: "Kalyan Dham Mordi Gallery | 41 Sacred Photos & Moments | चित्र दीर्घा",
   description:
-    "Explore the complete photo gallery of Shri Kali Kalyan Dham Mordi (41 high-resolution pictures). View sacred darshan, temple premises, sanctum sanctorum, aarti, and festive gatherings.",
+    "Photo gallery of Shri Kali Kalyan Dham Mordi (41 sacred photos). View temple premises, darshan, Veer Kallaji Rathore sanctum, and celebrations.",
   alternates: {
     canonical: "/gallery",
   },

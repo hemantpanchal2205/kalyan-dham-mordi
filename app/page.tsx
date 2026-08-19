@@ -6,7 +6,7 @@ import { getJanmotsavEventSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Kalyan Dham Mordi | Official Website | श्री काली कल्याणगढ़ धाम मोरडी",
   description:
-    "Official website of Shri Kali Kalyan Dham Mordi (श्री काली कल्याणगढ़ धाम मोरडी), Garhi Partapur, Banswara, Rajasthan. Check daily aarti timings, darshan schedule, Veer Kallaji Rathore lore, and photo gallery.",
+    "Official website of Shri Kali Kalyan Dham Mordi (श्री काली कल्याणगढ़ धाम मोरडी), Banswara, Rajasthan. Aarti timings, darshan schedule, history & gallery.",
   alternates: {
     canonical: "/",
   },
